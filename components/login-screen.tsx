@@ -36,7 +36,7 @@ export default function LoginScreen({ onNavigate }: LoginScreenProps) {
       <div className="w-full max-w-md">
         <div className="text-center mb-12">
           <div className="mb-6">
-            <h1 className="text-5xl font-bold text-primary mb-1">أبشرا</h1>
+            <h1 className="text-5xl font-bold text-primary mb-1">أبشري</h1>
             <p className="text-sm font-medium text-muted-foreground tracking-wide">Abshari</p>
           </div>
           <p className="text-base text-foreground leading-relaxed">Supporting Working Mothers</p>
