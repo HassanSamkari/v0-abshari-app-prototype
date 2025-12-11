@@ -1,6 +1,7 @@
 "use client"
 import { Card } from "@/components/ui/card"
 import { LogOut, CheckCircle, Download, Share2, Eye } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
 
 interface DashboardScreenProps {
   onNavigate: (screen: string, type?: string) => void
@@ -13,6 +14,8 @@ export default function DashboardScreen({
   showFullDashboard = false,
   onToggleDashboard,
 }: DashboardScreenProps) {
+  const { language, t } = useLanguage()
+
   const profileData = {
     name: "Sara Abdullah Al-Dosari",
     age: 32,
@@ -29,63 +32,63 @@ export default function DashboardScreen({
 
   const profileSections = [
     {
-      title: "Birth History",
+      title: t("section.birthHistory"),
       icon: "👶",
       items: [
-        { label: "Number of Births", value: "2" },
-        { label: "First Child Age", value: "4 years" },
-        { label: "Last Birth Date", value: "June 2022" },
-        { label: "Delivery Type", value: "Natural" },
+        { label: t("label.numberOfBirths"), value: "2" },
+        { label: t("label.firstChildAge"), value: "4 years" },
+        { label: t("label.lastBirthDate"), value: "June 2022" },
+        { label: t("label.deliveryType"), value: "Natural" },
       ],
     },
     {
-      title: "Vaccination Records",
+      title: t("section.vaccination"),
       icon: "💉",
       items: [
-        { label: "Last Checkup", value: "December 2024", status: "complete" },
-        { label: "Vaccinations Up-to-Date", value: "Yes", status: "complete" },
-        { label: "Next Scheduled", value: "June 2025" },
+        { label: t("label.lastCheckup"), value: "December 2024", status: "complete" },
+        { label: t("label.vaccinationsUpToDate"), value: "Yes", status: "complete" },
+        { label: t("label.nextScheduled"), value: "June 2025" },
       ],
     },
     {
-      title: "Breastfeeding Information",
+      title: t("section.breastfeeding"),
       icon: "🍼",
       items: [
-        { label: "Current Status", value: "Active (3 months)" },
-        { label: "Planned Duration", value: "12 months" },
-        { label: "Latest Check", value: "November 2024", status: "complete" },
+        { label: t("label.currentStatus"), value: "Active (3 months)" },
+        { label: t("label.plannedDuration"), value: "12 months" },
+        { label: t("label.latestCheck"), value: "November 2024", status: "complete" },
       ],
     },
     {
-      title: "Marriage & Family Status",
+      title: t("section.marriage"),
       icon: "👨‍👩‍👧",
       items: [
-        { label: "Marital Status", value: "Married" },
-        { label: "Spouse Name", value: "Mohammed Al-Dosari" },
-        { label: "Marriage Date", value: "July 2018" },
-        { label: "Dependent Children", value: "2" },
-        { label: "Family Support", value: "Yes" },
+        { label: t("label.maritalStatus"), value: "Married" },
+        { label: t("label.spouseName"), value: "Mohammed Al-Dosari" },
+        { label: t("label.marriageDate"), value: "July 2018" },
+        { label: t("label.dependentChildren"), value: "2" },
+        { label: t("label.familySupport"), value: "Yes" },
       ],
     },
     {
-      title: "Career & Job Information",
+      title: t("section.career"),
       icon: "💼",
       items: [
-        { label: "Position", value: "Senior HR Manager" },
-        { label: "Department", value: "Human Resources" },
-        { label: "Employment Type", value: "Full-time" },
-        { label: "Start Date", value: "January 2019" },
-        { label: "Years of Experience", value: "8 years" },
+        { label: t("label.position"), value: "Senior HR Manager" },
+        { label: t("label.department"), value: "Human Resources" },
+        { label: t("label.employmentType"), value: "Full-time" },
+        { label: t("label.startDate"), value: "January 2019" },
+        { label: t("label.yearsOfExperience"), value: "8 years" },
       ],
     },
     {
-      title: "Education & Specializations",
+      title: t("section.education"),
       icon: "🎓",
       items: [
-        { label: "Degree", value: "Bachelor's in Business Administration" },
-        { label: "University", value: "King Saud University" },
-        { label: "Specialization", value: "Human Resources Management" },
-        { label: "Professional Certification", value: "CIPD Level 5" },
+        { label: t("label.degree"), value: "Bachelor's in Business Administration" },
+        { label: t("label.university"), value: "King Saud University" },
+        { label: t("label.specialization"), value: "Human Resources Management" },
+        { label: t("label.certification"), value: "CIPD Level 5" },
       ],
     },
   ]
@@ -100,15 +103,15 @@ export default function DashboardScreen({
 
   if (showFullDashboard) {
     return (
-      <div className="min-h-screen bg-background">
-        <div className="bg-primary text-primary-foreground p-6">
+      <div className="min-h-screen bg-background" dir={language === "ar" ? "rtl" : "ltr"}>
+        <div className="bg-primary text-primary-foreground p-6 shadow-sm">
           <div className="flex items-center justify-between max-w-6xl mx-auto mb-6">
-            <h1 className="text-2xl font-bold">Abshari - Full Dashboard</h1>
+            <h1 className="text-2xl font-bold">{t("header.fullDashboard")}</h1>
             <div className="flex items-center gap-2">
               <button
                 onClick={onToggleDashboard}
                 className="p-2 hover:bg-primary/80 rounded transition"
-                title="Back to Profile"
+                title={t("header.backToProfile")}
               >
                 <Eye className="w-5 h-5" />
               </button>
@@ -153,7 +156,7 @@ export default function DashboardScreen({
           <Card className="border border-border shadow-sm overflow-hidden mt-6">
             <div className="bg-muted/40 px-6 py-4 border-b border-border flex items-center gap-3">
               <span className="text-xl">📋</span>
-              <h3 className="font-semibold text-foreground">Key Responsibilities</h3>
+              <h3 className="font-semibold text-foreground">{t("section.keyResponsibilities")}</h3>
             </div>
             <div className="p-6">
               <ul className="space-y-3">
@@ -172,15 +175,15 @@ export default function DashboardScreen({
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="bg-primary text-primary-foreground p-6">
-        <div className="flex items-center justify-between max-w-4xl mx-auto mb-6">
-          <h1 className="text-2xl font-bold">Abshari</h1>
+    <div className="min-h-screen bg-background" dir={language === "ar" ? "rtl" : "ltr"}>
+      <div className="bg-primary text-primary-foreground p-6 shadow-sm">
+        <div className="flex items-center justify-between max-w-6xl mx-auto mb-6">
+          <h1 className="text-2xl font-bold">{t("header.dashboard")}</h1>
           <div className="flex items-center gap-2">
             <button
               onClick={onToggleDashboard}
               className="p-2 hover:bg-primary/80 rounded transition"
-              title="View Full Dashboard"
+              title={t("header.viewFullDashboard")}
             >
               <Eye className="w-5 h-5" />
             </button>
@@ -195,14 +198,14 @@ export default function DashboardScreen({
             </button>
           </div>
         </div>
-        <div className="max-w-4xl mx-auto space-y-1">
-          <h2 className="text-xl font-semibold">Professional Profile</h2>
-          <p className="text-primary-foreground/90 text-sm">Complete health and career information</p>
+        <div className="max-w-6xl mx-auto space-y-1">
+          <h2 className="text-xl font-semibold">{t("header.profile")}</h2>
+          <p className="text-primary-foreground/90 text-sm">{t("header.profileDesc")}</p>
         </div>
       </div>
 
       {/* Content */}
-      <div className="p-6 max-w-4xl mx-auto pb-12">
+      <div className="p-6 max-w-6xl mx-auto pb-12">
         <Card className="mb-8 border border-border shadow-sm overflow-hidden">
           <div className="bg-gradient-to-r from-primary/5 to-primary/10 p-6 border-b border-border">
             <div className="flex items-start justify-between">
@@ -211,19 +214,21 @@ export default function DashboardScreen({
                 <p className="text-primary font-semibold mb-3">{profileData.position}</p>
                 <div className="grid grid-cols-2 gap-4 text-sm md:grid-cols-4">
                   <div>
-                    <p className="text-muted-foreground">Age</p>
-                    <p className="font-semibold text-foreground">{profileData.age} years</p>
+                    <p className="text-muted-foreground">{t("personal.age")}</p>
+                    <p className="font-semibold text-foreground">
+                      {profileData.age} {t("personal.years")}
+                    </p>
                   </div>
                   <div>
-                    <p className="text-muted-foreground">Department</p>
+                    <p className="text-muted-foreground">{t("personal.department")}</p>
                     <p className="font-semibold text-foreground">{profileData.department}</p>
                   </div>
                   <div>
-                    <p className="text-muted-foreground">Phone</p>
+                    <p className="text-muted-foreground">{t("personal.phone")}</p>
                     <p className="font-semibold text-foreground text-xs">{profileData.phone}</p>
                   </div>
                   <div>
-                    <p className="text-muted-foreground">Email</p>
+                    <p className="text-muted-foreground">{t("personal.email")}</p>
                     <p className="font-semibold text-foreground text-xs">{profileData.email}</p>
                   </div>
                 </div>
@@ -235,25 +240,25 @@ export default function DashboardScreen({
         <div className="grid grid-cols-2 gap-4 mb-8 md:grid-cols-4">
           <Card className="border border-border shadow-sm overflow-hidden">
             <div className="bg-blue-50 text-blue-700 p-4 rounded-t">
-              <p className="text-xs font-semibold opacity-75">Children</p>
+              <p className="text-xs font-semibold opacity-75">{t("personal.children")}</p>
               <p className="text-2xl font-bold mt-1">{profileData.children}</p>
             </div>
           </Card>
           <Card className="border border-border shadow-sm overflow-hidden">
             <div className="bg-green-50 text-green-700 p-4 rounded-t">
-              <p className="text-xs font-semibold opacity-75">Vaccination</p>
+              <p className="text-xs font-semibold opacity-75">{t("personal.vaccination")}</p>
               <p className="text-2xl font-bold mt-1">{profileData.vaccinationStatus}</p>
             </div>
           </Card>
           <Card className="border border-border shadow-sm overflow-hidden">
             <div className="bg-green-50 text-green-700 p-4 rounded-t">
-              <p className="text-xs font-semibold opacity-75">Employment</p>
+              <p className="text-xs font-semibold opacity-75">{t("personal.employment")}</p>
               <p className="text-2xl font-bold mt-1">{profileData.employmentStatus}</p>
             </div>
           </Card>
           <Card className="border border-border shadow-sm overflow-hidden">
             <div className="bg-purple-50 text-purple-700 p-4 rounded-t">
-              <p className="text-xs font-semibold opacity-75">Marital Status</p>
+              <p className="text-xs font-semibold opacity-75">{t("personal.maritalStatus")}</p>
               <p className="text-2xl font-bold mt-1">{profileData.marriageStatus}</p>
             </div>
           </Card>
@@ -288,7 +293,7 @@ export default function DashboardScreen({
           <Card className="border border-border shadow-sm overflow-hidden">
             <div className="bg-muted/40 px-6 py-4 border-b border-border flex items-center gap-3">
               <span className="text-xl">📋</span>
-              <h3 className="font-semibold text-foreground">Key Responsibilities</h3>
+              <h3 className="font-semibold text-foreground">{t("section.keyResponsibilities")}</h3>
             </div>
             <div className="p-6">
               <ul className="space-y-3">
